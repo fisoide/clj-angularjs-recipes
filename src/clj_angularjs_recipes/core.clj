@@ -15,7 +15,17 @@
    :headers {"Content-Type" "application/json"}
    :body (json/generate-string data)})
 
+(defrecord Task [id description])
+
+(defn getMyTask []
+  (->Task "1" "this is a Task...!"))
+
+(defn getMyMap []
+  {:id "2" :description "This is another description"})
+
 (defroutes api-routes
+  (GET "/api/eduard/" []
+    (json-response (getMyTask)))
   (GET "/api/recipes/:category" [category]
        (json-response {:category category :recipes (recipepuppy/get-recipes category 3)}))
   (route/resources "/")
@@ -32,6 +42,9 @@
              wrap-content-type
              wrap-dir-index
              handler/site))
+
+(defn multiply [] (* 2 2))
+
 (defn -main
   [& args]
   (let [port (or (first *command-line-args*) 8080)]

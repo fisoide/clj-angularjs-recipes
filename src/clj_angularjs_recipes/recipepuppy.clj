@@ -3,8 +3,7 @@
 
 (def API "http://www.recipepuppy.com/api/")
 
-(defn search-recipes
-  [query page]
+(defn search-recipes [query page]
   (let [response (http/get API {:query-params {:q query :p page} :as :json})]
     ((response :body) :results)))
                            

@@ -13,4 +13,6 @@
   :plugins [[lein-ring "0.8.3"]
             [lein-swank "1.4.5"]]
   :main clj-angularjs-recipes.core
-  :ring {:handler clj-angularjs-recipes.core/app})
+  :ring {:handler clj-angularjs-recipes.core/app}
+  :profiles {:dev {:dependencies [[midje "1.6.0"]]}}
+  )
